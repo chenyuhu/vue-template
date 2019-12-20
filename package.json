@@ -4,8 +4,13 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "electron:build": "vue-cli-service electron:build",
+    "electron:serve": "vue-cli-service electron:serve",
+    "postinstall": "electron-builder install-app-deps",
+    "postuninstall": "electron-builder install-app-deps"
   },
+  "main": "background.js",
   "dependencies": {
     "core-js": "^3.4.3",
     "vue": "^2.6.10",
@@ -14,13 +19,21 @@
     "vue-router": "^3.1.3",
     "vuex": "^3.1.2"
   },
+  "author": {
+    "name": "陈锋",
+    "email": "chenyuhu428@gmail.com",
+    "url": "https://chenyuhu.js.org"
+  },
   "devDependencies": {
+    "@sishuguojixuefu/eslint-config": "^0.5.3",
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-plugin-typescript": "^4.1.0",
     "@vue/cli-service": "^4.1.0",
+    "electron": "^6.0.0",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.0",
     "typescript": "~3.5.3",
+    "vue-cli-plugin-electron-builder": "^1.4.4",
     "vue-template-compiler": "^2.6.10"
   }
 }
