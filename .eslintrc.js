@@ -1,14 +1,18 @@
 module.exports = {
   root: true,
   env: {
-    node: true
+    node: true,
+    browser: true
   },
-  extends: ["plugin:vue/essential", "@vue/prettier", "@vue/typescript"],
-  rules: {
-    "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off"
-  },
+  extends: ['@sishuguojixuefu/eslint-config', '@vue/prettier', '@vue/typescript'],
   parserOptions: {
-    parser: "@typescript-eslint/parser"
+    parser: '@typescript-eslint/parser',
+    ecmaFeatures: {
+      legacyDecorators: true
+    }
+  },
+  rules: {
+    'import/no-named-as-default': 0,
+    'import/no-named-as-default-member': 0
   }
-};
+}
