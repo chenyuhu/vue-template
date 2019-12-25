@@ -23,7 +23,38 @@ module.exports = {
       // 主入口文件
       mainProcessFile: 'src/main/index.ts',
       mainProcessWatch: ['src/main'],
-      mainProcessArgs: []
+      mainProcessArgs: [],
+      builderOptions: {
+        // 应用名称
+        productName: '私塾钉钉',
+        // 版权
+        copyright: '',
+        appId: 'com.sishu.hulkbuster',
+        compression: 'maximum',
+        releaseInfo: {
+          // 更新信息
+          releaseNotes: '1. 修复退出群聊报错 <br> 2. 切换对话清空消息 <br> 3. 群聊查看群成员可发送消息'
+        },
+        // 是否打包加密
+        asar: true,
+        // 项目打包生成的文件目录
+        directories: {
+          output: 'build'
+        },
+        // 是否静默安装
+        nsis: {
+          oneClick: false,
+          allowToChangeInstallationDirectory: true
+        },
+        // window的icon头标
+        win: {
+          icon: 'public/sishu.png'
+        },
+        // mac的icon头标
+        mac: {
+          icon: 'public/favicon.ico'
+        }
+      }
     }
   },
   outputDir: 'build',

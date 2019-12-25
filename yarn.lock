@@ -7,11 +7,6 @@
   resolved "http://192.168.2.116:4873/7zip-bin/-/7zip-bin-5.0.3.tgz#bc5b5532ecafd923a61f2fb097e3b108c0106a3f"
   integrity sha1-vFtVMuyv2SOmHy+wl+OxCMAQaj8=
 
-"7zip@0.0.6":
-  version "0.0.6"
-  resolved "http://192.168.2.116:4873/7zip/-/7zip-0.0.6.tgz#9cafb171af82329490353b4816f03347aa150a30"
-  integrity sha1-nK+xca+CMpSQNTtIFvAzR6oVCjA=
-
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.5.5":
   version "7.5.5"
   resolved "http://192.168.2.116:4873/@babel%2fcode-frame/-/code-frame-7.5.5.tgz#bc0782f6d69f7b7d49531219699b988f669a8f9d"
@@ -874,11 +869,6 @@
   version "4.1.5"
   resolved "http://192.168.2.116:4873/@types%2fdebug/-/debug-4.1.5.tgz#b14efa8852b7768d898906613c23f688713e02cd"
   integrity sha1-sU76iFK3do2JiQZhPCP2iHE+As0=
-
-"@types/electron-devtools-installer@^2.2.0":
-  version "2.2.0"
-  resolved "http://192.168.2.116:4873/@types%2felectron-devtools-installer/-/electron-devtools-installer-2.2.0.tgz#32ee4ebbe99b3daf9847a6d2097dc00b5de94f10"
-  integrity sha1-Mu5Ou+mbPa+YR6bSCX3AC13pTxA=
 
 "@types/eslint-visitor-keys@^1.0.0":
   version "1.0.0"
@@ -3045,6 +3035,13 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
+cross-env@^6.0.3:
+  version "6.0.3"
+  resolved "http://192.168.2.116:4873/cross-env/-/cross-env-6.0.3.tgz#4256b71e49b3a40637a0ce70768a6ef5c72ae941"
+  integrity sha1-Qla3HkmzpAY3oM5wdopu9ccq6UE=
+  dependencies:
+    cross-spawn "^7.0.0"
+
 cross-spawn@^3.0.0:
   version "3.0.1"
   resolved "http://192.168.2.116:4873/cross-spawn/-/cross-spawn-3.0.1.tgz#1256037ecb9f0c5f79e3d6ef135e30770184b982"
@@ -3081,11 +3078,6 @@ cross-spawn@^7.0.0:
     path-key "^3.1.0"
     shebang-command "^2.0.0"
     which "^2.0.1"
-
-cross-unzip@0.0.2:
-  version "0.0.2"
-  resolved "http://192.168.2.116:4873/cross-unzip/-/cross-unzip-0.0.2.tgz#5183bc47a09559befcf98cc4657964999359372f"
-  integrity sha1-UYO8R6CVWb78+YzEZXlkmZNZNy8=
 
 crypto-browserify@^3.11.0:
   version "3.12.0"
@@ -3478,7 +3470,7 @@ del@^4.1.1:
     pify "^4.0.1"
     rimraf "^2.6.3"
 
-del@^5.0.0:
+del@^5.0.0, del@^5.1.0:
   version "5.1.0"
   resolved "http://192.168.2.116:4873/del/-/del-5.1.0.tgz#d9487c94e367410e6eff2925ee58c0c84a75b3a7"
   integrity sha1-2Uh8lONnQQ5u/ykl7ljAyEp1s6c=
@@ -3765,16 +3757,6 @@ electron-debug@^3.0.1:
   dependencies:
     electron-is-dev "^1.1.0"
     electron-localshortcut "^3.1.0"
-
-electron-devtools-installer@^2.2.4:
-  version "2.2.4"
-  resolved "http://192.168.2.116:4873/electron-devtools-installer/-/electron-devtools-installer-2.2.4.tgz#261a50337e37121d338b966f07922eb4939a8763"
-  integrity sha1-JhpQM343Eh0zi5ZvB5IutJOah2M=
-  dependencies:
-    "7zip" "0.0.6"
-    cross-unzip "0.0.2"
-    rimraf "^2.5.2"
-    semver "^5.3.0"
 
 electron-download@^4.1.0, electron-download@^4.1.1:
   version "4.1.1"
@@ -8815,7 +8797,7 @@ rgba-regex@^1.0.0:
   resolved "http://192.168.2.116:4873/rgba-regex/-/rgba-regex-1.0.0.tgz#43374e2e2ca0968b0ef1523460b7d730ff22eeb3"
   integrity sha1-QzdOLiyglosO8VI0YLfXMP8i7rM=
 
-rimraf@2, rimraf@^2.5.2, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6.3, rimraf@^2.7.1:
+rimraf@2, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6.3, rimraf@^2.7.1:
   version "2.7.1"
   resolved "http://192.168.2.116:4873/rimraf/-/rimraf-2.7.1.tgz#35797f13a7fdadc566142c29d4f07ccad483e3ec"
   integrity sha1-NXl/E6f9rcVmFCwp1PB8ytSD4+w=

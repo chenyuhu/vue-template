@@ -26,9 +26,7 @@ const createWindow = async () => {
       try {
         await installVueDevtools(true)
       } catch (error) {
-        console.log('======================================')
         console.log('error', error)
-        console.log('======================================')
       }
       electronDebug({ showDevTools: true })
     }
