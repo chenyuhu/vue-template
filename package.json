@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "vue-cli-service electron:build",
+    "build": "cross-env BUILD_TARGET=clean node .electron-dev/build.ts && vue-cli-service electron:build --win --ia32 --publish always",
+    "build:clean": "cross-env BUILD_TARGET=buildClean node .electron-dev/build.ts",
+    "build:mac": "cross-env BUILD_TARGET=clean node .electron-dev/build.ts && vue-cli-service electron:build --mac --ia32 --publish always",
     "dev": "vue-cli-service electron:serve",
     "lint": "vue-cli-service lint",
     "postinstall": "electron-builder install-app-deps",
@@ -30,6 +32,7 @@
     "del": "^5.1.0",
     "electron": "6.0.0",
     "electron-debug": "^3.0.1",
+    "html-webpack-plugin": "^3.2.0",
     "lint-staged": "^9.4.3",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.0",

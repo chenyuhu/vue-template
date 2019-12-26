@@ -1,21 +1,33 @@
 'use strict'
 
-import { app, protocol, BrowserWindow } from 'electron'
+import { app, protocol, BrowserWindow, nativeImage } from 'electron'
 import { createProtocol, installVueDevtools } from 'vue-cli-plugin-electron-builder/lib'
 import electronDebug from 'electron-debug'
+import path from 'path'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 let win: BrowserWindow | null
 
 protocol.registerSchemesAsPrivileged([{ scheme: 'app', privileges: { secure: true, standard: true } }])
+const iconUrl = isDevelopment
+  ? path.join(__dirname, '../../public/favicon.ico')
+  : path.join(__dirname, 'public/favicon.ico')
+
+const icon = nativeImage.createFromPath(iconUrl)
 
 const createWindow = async () => {
   win = new BrowserWindow({
     width: 800,
     height: 600,
+    autoHideMenuBar: true,
+    icon,
+    center: true,
+    transparent: true,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      devTools: isDevelopment,
+      webSecurity: isDevelopment
     }
   })
 
@@ -24,11 +36,11 @@ const createWindow = async () => {
     if (!process.env.IS_TEST) {
       win.webContents.openDevTools()
       try {
+        electronDebug({ showDevTools: true })
         await installVueDevtools(true)
       } catch (error) {
         console.log('error', error)
       }
-      electronDebug({ showDevTools: true })
     }
   } else {
     createProtocol('app')
