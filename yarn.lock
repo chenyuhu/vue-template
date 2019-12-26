@@ -10441,6 +10441,11 @@ vue-cli-plugin-electron-builder@^1.4.4:
     webpack-chain "^5.0.0"
     yargs "^14.0.0"
 
+vue-electron@^1.0.6:
+  version "1.0.6"
+  resolved "http://192.168.2.116:4873/vue-electron/-/vue-electron-1.0.6.tgz#e798e03180b8933539defe31f92e53b9242b9406"
+  integrity sha1-55jgMYC4kzU53v4x+S5TuSQrlAY=
+
 vue-eslint-parser@^6.0.5:
   version "6.0.5"
   resolved "http://192.168.2.116:4873/vue-eslint-parser/-/vue-eslint-parser-6.0.5.tgz#c1c067c2755748e28f3872cd42e8c1c4c1a8059f"
