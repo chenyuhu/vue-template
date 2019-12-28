@@ -6,7 +6,9 @@
 <script lang="ts">
 import { Vue } from 'vue-property-decorator'
 
-export default class WorkWin extends Vue {}
+export default class WorkWin extends Vue {
+  public name: string = '哈哈哈'
+}
 </script>
 
 <style scoped lang="scss"></style>

@@ -8,8 +8,8 @@ import path from 'path'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 interface Win {
-  main: BrowserWindow | any
-  [propName: string]: BrowserWindow | any
+  main: BrowserWindow | null
+  [propName: string]: BrowserWindow | null
 }
 
 const win: Win = { main: null }
@@ -54,7 +54,7 @@ const createWindow = async () => {
   ipcMain.on('createWin', (event, arg) => {
     const { name } = arg
     if (win[name]) {
-      win[name].focus()
+      win[name]!.focus()
     } else {
       win[name] = new BrowserWindow({
         width: 800,
@@ -70,9 +70,9 @@ const createWindow = async () => {
         }
       })
       const loadUrl = isDevelopment ? `http://localhost:8080/${name}.html` : `app://./${name}.html`
-      win[name].loadURL(loadUrl)
+      win[name]!.loadURL(loadUrl)
     }
-    win[name].on('closed', () => {
+    win[name]!.on('closed', () => {
       win[name] = null
     })
   })
