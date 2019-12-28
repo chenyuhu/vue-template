@@ -1,13 +1,15 @@
 import Vue from 'vue'
+import router from 'src/router'
+import store from 'src/store'
 import App from './App.vue'
-import router from './router'
-import store from './store'
 
 const vueElectron = require('vue-electron')
 
 Vue.config.productionTip = false
 
-if (!process.env.IS_WEB) Vue.use(vueElectron)
+if (!process.env.IS_WEB) {
+  Vue.use(vueElectron)
+}
 
 new Vue({
   router,

@@ -1,23 +1,28 @@
 'use strict'
 
-import { app, protocol, BrowserWindow, nativeImage } from 'electron'
+import { app, protocol, BrowserWindow, nativeImage, ipcMain } from 'electron'
 import { createProtocol, installVueDevtools } from 'vue-cli-plugin-electron-builder/lib'
 import electronDebug from 'electron-debug'
 import path from 'path'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
-let win: BrowserWindow | null
+interface Win {
+  main: BrowserWindow | any
+  [propName: string]: BrowserWindow | any
+}
+
+const win: Win = { main: null }
 
 protocol.registerSchemesAsPrivileged([{ scheme: 'app', privileges: { secure: true, standard: true } }])
 const iconUrl = isDevelopment
   ? path.join(__dirname, '../../public/favicon.ico')
   : path.join(__dirname, 'public/favicon.ico')
 
-const icon = nativeImage.createFromPath(iconUrl)
+const icon: nativeImage = nativeImage.createFromPath(iconUrl)
 
 const createWindow = async () => {
-  win = new BrowserWindow({
+  win.main = new BrowserWindow({
     width: 800,
     height: 600,
     autoHideMenuBar: true,
@@ -32,9 +37,9 @@ const createWindow = async () => {
   })
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
-    win.loadURL(process.env.WEBPACK_DEV_SERVER_URL as string)
+    win.main.loadURL('http://localhost:8080/main.html')
     if (!process.env.IS_TEST) {
-      win.webContents.openDevTools()
+      win.main.webContents.openDevTools()
       try {
         electronDebug({ showDevTools: true })
         await installVueDevtools(true)
@@ -44,11 +49,35 @@ const createWindow = async () => {
     }
   } else {
     createProtocol('app')
-    win.loadURL('app://./index.html')
+    win.main.loadURL('app://./main.html')
   }
-
-  win.on('closed', () => {
-    win = null
+  ipcMain.on('createWin', (event, arg) => {
+    const { name } = arg
+    if (win[name]) {
+      win[name].focus()
+    } else {
+      win[name] = new BrowserWindow({
+        width: 800,
+        height: 600,
+        autoHideMenuBar: true,
+        icon,
+        center: true,
+        transparent: true,
+        webPreferences: {
+          nodeIntegration: true,
+          devTools: isDevelopment,
+          webSecurity: isDevelopment
+        }
+      })
+      const loadUrl = isDevelopment ? `http://localhost:8080/${name}.html` : `app://./${name}.html`
+      win[name].loadURL(loadUrl)
+    }
+    win[name].on('closed', () => {
+      win[name] = null
+    })
+  })
+  win.main.on('closed', () => {
+    win.main = null
   })
 }
 
